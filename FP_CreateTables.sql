@@ -25,19 +25,17 @@ CREATE TABLE dvds(
 
 CREATE TABLE rentals(
     checkout_date DATE NOT NULL,
-    dvd_ID NUMBER(4,0) NOT NULL,
-    member_ID NUMBER(4,0) NOT NULL,
+    dvd_ID NUMBER(4,0) NOT NULL FOREIGN KEY REFERENCES dvds(dvd_ID),
+    member_ID NUMBER(4,0) NOT NULL FOREIGN KEY REFERENCES members(member_ID),
     checkin_date DATE,
     expired_date DATE NOT NULL,
-    PRIMARY KEY(checkout_date, dvd_ID),
-    FOREIGN KEY(dvd_ID) REFERENCES dvds(dvd_ID)
+    PRIMARY KEY(checkout_date, dvd_ID)
 );
 
 CREATE TABLE reservations(
     reserve_date DATE NOT NULL,
-    member_ID NUMBER(4,0) NOT NULL,
-    title_ID NUMBER(3,0) NOT NULL,
-    PRIMARY KEY(reserve_date, member_ID),
-    FOREIGN KEY(member_ID) REFERENCES members(member_ID)
+    member_ID NUMBER(4,0) NOT NULL FOREIGN KEY REFERENCES members(member_ID),
+    title_ID NUMBER(3,0) NOT NULL FOREIGN KEY REFERENCES dvds(title_ID),
+    PRIMARY KEY(reserve_date, member_ID)
 );
 
