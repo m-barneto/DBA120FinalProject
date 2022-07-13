@@ -37,7 +37,7 @@ CREATE TABLE members(
 
 CREATE TABLE dvds(
     dvd_ID NUMBER(4,0) NOT NULL,
-    title_ID NUMBER(3,0) NOT NULL,
+    title_ID NUMBER(3,0) UNIQUE NOT NULL,
     title VARCHAR2(20) NOT NULL,
     status VARCHAR2(10) NOT NULL,
     PRIMARY KEY(dvd_ID)
